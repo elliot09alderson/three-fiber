@@ -1,17 +1,37 @@
 import { Canvas } from "@react-three/fiber";
-import React from "react";
+import React, { useState } from "react";
 import Model from "./Model";
 import { Environment, OrbitControls, Stage } from "@react-three/drei";
 
 const Expirence = () => {
+  const [file, setFile] = useState(null);
+
+  const handleFileUpload = (e) => {
+    const uploadedFile = e.target.files[0];
+    if (uploadedFile && uploadedFile.name.endsWith(".glb")) {
+      setFile(uploadedFile);
+    } else {
+      alert("Please upload a .glb file");
+    }
+  };
+
   return (
     <>
       <div className="h-screen w-screen">
+        <div className="mt-12 ml-12">
+          <input
+            type="file"
+            onChange={handleFileUpload}
+            accept=".glb"
+            className="h-48 w-48 border rounded-lg border-gray-400 ring-gray-500"
+          />
+        </div>
         <Canvas>
+          <ambientLight intensity={0.5} />
           <Environment preset="city" />
-          <OrbitControls />
+          <OrbitControls makeDefault />
           <Stage>
-            <Model scale={0.5} />
+            <Model file={file} />
           </Stage>
         </Canvas>
       </div>
