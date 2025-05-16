@@ -1,10 +1,16 @@
 import React from "react";
 import Expirence from "./Expirence";
+import FizzBuzzList from "../FizzBuzzList";
+import TypewritterEffect from "./TypewritterEffect";
 
 const App = () => {
   return (
     <div>
-      <Expirence />
+      {/* <Expirence /> */}
+      {/* <FizzBuzzList /> */}
+      <div>
+        <TypewritterEffect />
+      </div>
     </div>
   );
 };
